@@ -15,30 +15,14 @@ LIB_DIR=${2:-"../lib"};
 # Constants
 #---------------------------------------------------------------------------
 HUMAN="HomoSapiens"
-MURINE="MusMusculus"
 
 HG38_FTP_URL="http://hgdownload.soe.ucsc.edu/goldenPath/hg38/database/"
 HG38_FTP_GENOME_URL="http://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/"
-
-#HG19_FTP_URL="http://hgdownload.soe.ucsc.edu/goldenPath/hg19/database/"
-#HG19_FTP_GENOME_URL="http://hgdownload.soe.ucsc.edu/goldenPath/hg19/bigZips/"
-
-#MURINE_GENE_EXPRESSION_FTP="http://chromosome.sdsc.edu/mouse/download/"
-#MURINE_GENE_EXPRESSION_FILE="19-tissues-expr.zip"
-#MURINE_GENE_EXPRESSION_FOLDER="19-tissues-expr"
-
-#MM10_FTP_URL="http://hgdownload.soe.ucsc.edu/goldenPath/mm10/database/"
-#MM10_FTP_GENOME_URL="http://hgdownload.soe.ucsc.edu/goldenPath/mm10/bigZips/"
-
-#MM9_FTP_URL="http://hgdownload.soe.ucsc.edu/goldenPath/mm9/database/"
-#MM9_FTP_GENOME_URL="http://hgdownload.soe.ucsc.edu/goldenPath/mm9/bigZips/"
 
 GENOME_DIR="Genomes"
 HUMAN_GENOME_DIR="${RESOURCES_DIR}/${GENOME_DIR}/${HUMAN}"
 HG38_GENOME_FASTA_FILE="hg38.fa.gz"
 HG38_GENOME_FASTA="ucscHg38Genome.fa"
-HG19_GENOME_FASTA_FILE="chromFa.tar.gz"
-HG19_GENOME_FASTA="ucscHg19Genome.fa"
 
 REGIONS_DIR="Regions"
 HUMAN_REGIONS_DIR="${RESOURCES_DIR}/${REGIONS_DIR}/${HUMAN}"
@@ -46,22 +30,25 @@ HG38_REGIONS_FILE="ucscHg38Alu.bed.gz"
 #HG38_SINE_FILE="ucscHg38SINE.bed.gz"
 #HG38_RE_FILE="ucscHg38AllRE.bed.gz"
 #HG38_LTR_LINE_FILE="ucscHg38LINEAndLTR.bed.gz"
-HG38_REGIONS_TABLE_FILE="rmsk.txt.gz"
+
 
 SNPS_DIR="SNPs"
 HUMAN_SNPS_DIR="${RESOURCES_DIR}/${SNPS_DIR}/${HUMAN}"
 HG38_SNPS_FILE="ucscHg38CommonGenomicSNPs150.bed.gz"
 HG38_SNPS_TABLE_FILE="snp150Common.txt.gz"
 
+
 REFSEQ_DIR="RefSeqAnnotations"
 HUMAN_REFSEQ_DIR="${RESOURCES_DIR}/${REFSEQ_DIR}/${HUMAN}"
 HG38_REFSEQ_TABLE_FILE="ncbiRefSeqCurated.txt.gz"
 HG38_REFSEQ_FILE="ucscHg38RefSeqCurated.bed.gz"
 
+
 GENES_EXPRESSION_DIR="GenesExpression"
 HUMAN_GENES_EXPRESSION_DIR="${RESOURCES_DIR}/${GENES_EXPRESSION_DIR}/${HUMAN}"
 HG38_GENES_EXPRESSION_FILE="ucscHg38GTExGeneExpression.bed.gz"
 HG38_GENES_EXPRESSION_TABLE_FILE="gtexGene.txt.gz"
+
 
 #---------------------------------------------------------------------------
 # Downloading
@@ -82,6 +69,7 @@ mkdir -p "${HUMAN_SNPS_DIR}"
 mkdir -p "${HUMAN_REFSEQ_DIR}"
 
 mkdir -p "${HUMAN_GENES_EXPRESSION_DIR}"
+
 
 echo "Started Downloading UCSC Resources.
 "
@@ -133,7 +121,7 @@ zcat "${HUMAN_GENES_EXPRESSION_DIR}/${HG38_GENES_EXPRESSION_TABLE_FILE}" | awk '
 rm "${HUMAN_GENES_EXPRESSION_DIR}/${HG38_GENES_EXPRESSION_TABLE_FILE}"
 echo "Done Processing Hg38 Genes Expression Table ${HG38_GENES_EXPRESSION_TABLE_FILE}"
 
-
+fi
 
 #---------------------------------------------------------------------------
 # Create INI File
@@ -157,6 +145,5 @@ echo "SNPs = ${HUMAN_SNPS_DIR}/${HG38_SNPS_FILE}" >> ${DBS_PATHS_INI}
 echo "RefSeq = ${HUMAN_REFSEQ_DIR}/${HG38_REFSEQ_FILE}" >> ${DBS_PATHS_INI}
 echo "GenesExpression = ${HUMAN_GENES_EXPRESSION_DIR}/${HG38_GENES_EXPRESSION_FILE}" >> ${DBS_PATHS_INI}
 echo "" >> ${DBS_PATHS_INI}
-
 
 fi
